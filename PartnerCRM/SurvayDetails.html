@@ -1,0 +1,376 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="assets/img/partner_logo.jpg">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>
+        מערכת ניהול יומן פעולות
+    </title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <!-- CSS Files -->
+    <link href="assets/css/material-kit.css?v=2.0.5" rel="stylesheet" />
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="assets/demo/demo.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+    <script src="assets/js/login_functions.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
+        <div class="container">
+            <div class="navbar-translate">
+                <a class="navbar-brand" href="Index.html">
+                    מערכת ניהול יומן פעולות
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="Index.html">
+                            <i class="material-icons">cloud_download</i> רשימת פעולות
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-header header-filter" data-parallax="true" style="background-image: url('assets/img/city-profile.jpg');height: 60vh;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto">
+                    <div class="brand text-center">
+                        <!--<h3 class=" text-center" style="font-family: 'Rubik', sans-serif;">סקר</h3>-->
+                        <h1 style="font-family: 'Rubik', sans-serif;">הוסף פעולה חדשה</h1>
+                        <!--<h3 class="title text-center" style="font-family: 'Rubik', sans-serif;">תל אביב - 24.2.19</h3>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main main-raised">
+        <div class="container">
+            <div class="section text-center" style="padding: 40px 0;">
+
+
+
+
+                <div class="row" style="margin-top: 0px;">
+                    <div class="col-lg-4 col-md-6 ml-auto mr-auto">
+                        <div class="card1 card-login">
+                            <form class="form" method="" action="">
+                                <input id="input_card_id" type="hidden" class="form-control" value="">
+                                <h3 class="description text-center">הזן את פרטי הפעולה</h3>
+
+
+                                <div class="card-body" style="direction:rtl">
+                                    <span class="bmd-form-group">
+                                        <div class="input-group">
+
+                                            <input id="input_card_name" type="text" class="form-control" placeholder="הכנס שם">
+                                        </div>
+                                    </span>                                    
+                                    <span class="bmd-form-group">
+                                        <div class="input-group">
+
+                                            <input style="direction: ltr;" id="input_sum" type="text" class="form-control" placeholder="הכנס סכום" onkeypress="return isNumberKey(event)">
+                                        </div>
+                                    </span>
+                                    <span class="bmd-form-group">
+                                        <div class="input-group">
+
+                                            <input id="input_desc" type="text" class="form-control" placeholder="הכנס תאור הפעולה (לא חובה)">
+                                        </div>
+                                    </span>
+                                </div>
+                                <div class=" text-center">
+                                    <a href="#" class="btn btn-primary" id="btn_addnew" onclick="add_card()">הוסף</a>
+                                    <a href="#" class="btn btn-primary" id="btn_update" style="display:none" onclick="update_card()">עדכן</a>
+                                    <a href="#" class="btn btn-primary" id="btn_delete" style="display:none" onclick="delete_card()">מחק</a>
+                                    <a href="#" class="btn btn-primary btn-link " onclick="return_home()">ביטול</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--   Core JS Files   -->
+    <script src="assets/js/core/jquery.min.js" type="text/javascript"></script>
+    <script src="assets/js/core/popper.min.js" type="text/javascript"></script>
+    <script src="assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
+    <script src="assets/js/plugins/moment.min.js"></script>
+    <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+    <script src="assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
+    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+    <script src="assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
+    <!--  Google Maps Plugin    -->
+    <!--<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>-->
+    <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
+    <script src="assets/js/material-kit.js?v=2.0.5" type="text/javascript"></script>
+    <script src="assets/js/bootstrap-notify.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            // Handler for .ready() called.
+            // check is user is logged in
+            var admin_type = is_logged_in();
+            if (admin_type == "") {
+                console.log("user is not logged in!!! redirect to login");
+                document.location.href = "Login.html";
+            }
+
+
+            var card_id = getUrlVars()["card_id"].replace("#", "");
+
+            if (card_id !== undefined) {
+                card_id = card_id.replace("#", "");
+
+                get_card_data(card_id);                
+
+            }
+
+        });
+
+        function add_card() {
+            //alert('added');
+            var client_id = 'admin' //;getCookie("client_id");
+            if (client_id != "") {
+                //if (allnumericplusminus($("#input_sum").val())) {
+                    add_new_survay($("#input_card_name").val(), $("#input_sum").val(), $("#input_desc").val(), client_id);
+                //}
+                //else {
+                //    alert('עליך לרשום מספרים בלבד בשדה הסכום!');
+                //}
+                
+            }
+            else {
+                //alert("no client id.");
+                document.location.href = "Login.html";
+            }
+
+
+
+        }
+
+        function allnumericplusminus(inputtxt) {
+            var numbers = /^[-+]?[0-9]+$/;
+            if (inputtxt.value.match(numbers)) {
+                //alert('Correct...Try another');
+                //document.form1.text1.focus();
+                return true;
+            }
+            else {
+                
+                //document.form1.text1.focus();
+                return false;
+            }
+        }
+
+        function update_card() {
+            //alert('added');
+            var client_id = 'admin' //;getCookie("client_id");
+            if (client_id != "") {
+                update_card_details($("#input_card_id").val());
+            }
+            else {
+                //alert("no client id.");
+                document.location.href = "Login.html";
+            }
+
+
+
+        }
+        
+        function getUrlVars() {
+            var vars = [], hash;
+            var q = document.URL.split('?')[1];
+            if (q != undefined) {
+                q = q.split('&');
+                for (var i = 0; i < q.length; i++) {
+                    hash = q[i].split('=');
+                    vars.push(hash[1]);
+                    vars[hash[0]] = hash[1];
+                }
+            }
+            return vars;
+        }
+
+        function return_home() {
+            window.location.href = 'index.html';
+        }
+        function add_new_survay(name, sum, desc, client_id) {
+
+
+            url = "DataGetter.aspx/add_new_survay";
+            data = "{name:'" + name + "',sum:'" + sum + "',desc:'" + desc + "',client_id:'" + client_id + "'}";
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: data,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: OnSuccess_add_new_survay,
+                failure: function (response) {
+                    alert(response.d);
+                },
+                error: function (response) {
+                    alert(response.d);
+                }
+            });
+
+        }
+
+        function OnSuccess_add_new_survay(response) {
+
+            //alert(response.d);
+            //var response_array = JSON.parse(response.d);
+            //alert(response.d);
+            showNotification("", "הכרטיס נוסף בהצלחה");
+
+            setTimeout(function () { document.location.href = "Index.html"; }, 1000);
+            //window.location.href = 'index.html';
+        }
+
+        function get_card_data(card_id) {
+
+            $('#btn_addnew').show();
+            $('#btn_update').hide();
+            $('#btn_delete').hide();
+            
+            url = "DataGetter.aspx/get_card_data";
+            data = "{card_id:'" + card_id + "'}";
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: data,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: OnSuccess_get_card_data,
+                failure: function (response) {
+                    alert(response.d);
+                },
+                error: function (response) {
+                    alert(response.d);
+                }
+            });
+        }
+
+        function OnSuccess_get_card_data(response) {
+
+            vals = response.d.split(";");
+            //תל אביב - 24.2.19
+            $('#input_card_name').val(vals[0]);
+            $('#input_sum').val(vals[1]);
+            $('#input_desc').val(vals[2]);
+            $('#input_card_id').val(vals[3]);
+            
+
+            $('#btn_addnew').hide();
+
+            $('#btn_update').show();
+            $('#btn_delete').show();
+        }
+
+
+        function update_card_details(card_id) {
+           
+            url = "DataGetter.aspx/update_card";
+            data = "{name:'" + $('#input_card_name').val() + "',sum:'" + $('#input_sum').val() + "',description:'" + $('#input_desc').val() + "',card_id:'" + card_id + "'}";
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: data,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: OnSuccess_update_card_details,
+                failure: function (response) {
+                    alert(response.d);
+                },
+                error: function (response) {
+                    alert(response.d);
+                }
+            });
+
+        }
+
+        function OnSuccess_update_card_details(response) {
+
+            //alert(response.d);
+            //var response_array = JSON.parse(response.d);
+            //alert(response.d);
+            showNotification("", "הכרטיס עודכן בהצלחה");
+
+            setTimeout(function () { document.location.href = "Index.html"; }, 1000);
+            //window.location.href = 'index.html';
+        }
+
+        function delete_card() {
+            var card_id = getUrlVars()["card_id"].replace("#", "");
+
+            url = "DataGetter.aspx/delete_card";
+            data = "{card_id:'" + card_id + "'}";
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: data,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: OnSuccess_delete_card,
+                failure: function (response) {
+                    alert(response.d);
+                },
+                error: function (response) {
+                    alert(response.d);
+                }
+            });
+
+        }
+
+        function OnSuccess_delete_card(response) {
+
+            //alert(response.d);
+            showNotification("", "הפעולה נמחקה בהצלחה.");
+
+            setTimeout(return_home, 1000);
+
+
+        }
+
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            //console.log(charCode);
+            if (charCode == 45)
+                return true;
+
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+
+            return true;
+        }
+    </script>
+</body>
+
+</html>
